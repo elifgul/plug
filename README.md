@@ -1,16 +1,9 @@
-# plug
+# Plug
 
-A new Flutter project.
+Flutter application.
 
-## Getting Started
+## ScreenShots of plug
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+List |Detail Page |
+|-------|-------|
+|<img src="https://github.com/elifgul/plug/blob/master/assets/screenshots/list.png" width="400">|<img src="https://github.com/elifgul/plug/blob/master/assets/screenshots/detail.png" width="400">|
