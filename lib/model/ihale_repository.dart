@@ -1,9 +1,12 @@
 import 'package:plug/model/ihale.dart';
+import 'package:plug/service/ihale_service.dart';
 
 class IhaleRepository {
 
   static List<Ihale> loadIhaleList() {
-
+    fetchPhotos();
+    return data;
+    /*
     List<Ihale> allIhaleList = <Ihale>[
       Ihale(
         id: 13122222,
@@ -87,5 +90,7 @@ class IhaleRepository {
       ),
     ];
     return allIhaleList;
+
+     */
   }
 }

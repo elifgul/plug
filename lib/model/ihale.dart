@@ -20,6 +20,20 @@ class Ihale {
   String usul;
   double yaklasikMaliyet;
 
+
+  factory Ihale.fromJson(Map<String, dynamic> json) {
+    return Ihale(
+      id: json['id'],
+      isinAdi: json['isinAdi'],
+      aciklama: json['aciklama'],
+      daireBasAdi: json['daireBasAd'],
+      mudurlukAdi: json['mudurlukAd'],
+      tur: json['tur'],
+      usul: json['usul'],
+      yaklasikMaliyet: json['yaklasikMaliyet'],
+    );
+  }
+
   @override
   String toString() {
     return isinAdi;

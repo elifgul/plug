@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:plug/ihaleBilgiPage.dart';
-import 'package:plug/model/ihaleRepository.dart';
+import 'package:plug/helper/colors.dart';
+import 'package:plug/model/ihale_repository.dart';
+import 'package:plug/page/ihale_bilgi_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,12 +35,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.list),
+          onPressed: () {},
+        ),
         title: Text(widget.title),
         elevation: 0.1,
-        backgroundColor: Color.fromRGBO(58, 66, 86, 1.0),
+        backgroundColor: PRIMARY_COLOR,
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.list),
+            icon: Icon(Icons.settings),
             onPressed: () {},
           )
         ],
@@ -57,16 +62,42 @@ class IhaleListWidget extends StatelessWidget {
     }
     return ihaleList.map((ihale) {
       return Card(
-          margin: new EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+          margin: new EdgeInsets.symmetric(horizontal: 5, vertical: 3),
           child: ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            leading: Text(
-              ihale.id.toString() + '\n' + ihale.tur + '/' + ihale.usul,
-              style: TextStyle(fontSize: 11),
+            contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            leading: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  ihale.id.toString(),
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: PRIMARY_COLOR,
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    width: 45,
+                    child: new Divider(color: Colors.green, thickness: 2),
+                  ),
+                ),
+                Text(
+                  ihale.usul,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: PRIMARY_COLOR,
+                  ),
+                ),
+              ],
             ),
             title: Text(
-              ihale.daireBasAdi + ' ' + ihale.mudurlukAdi,
-              style: TextStyle(fontSize: 12),
+              ihale.daireBasAdi + '\n' + ihale.mudurlukAdi,
+              style: TextStyle(
+                fontSize: 13,
+                color: PRIMARY_COLOR,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             subtitle: Row(
               children: <Widget>[
@@ -75,27 +106,38 @@ class IhaleListWidget extends StatelessWidget {
                     child: Container(
                       child: Text(
                           NumberFormat.currency(
-                                  locale: 'tr',
-                                  customPattern: '#,###.## \u00a4',
-                                  decimalDigits: 2)
-                              .format(ihale.yaklasikMaliyet),
-                          style: TextStyle(fontSize: 11)),
+                                      locale: 'tr',
+                                      customPattern: '#,###.##',
+                                      decimalDigits: 2)
+                                  .format(ihale.yaklasikMaliyet) +
+                              ' ₺',
+                          style: TextStyle(fontSize: 12, color: PRIMARY_COLOR)),
                     )),
                 Expanded(
                   flex: 4,
                   child: Padding(
                       padding: EdgeInsets.only(left: 10),
-                      child:
-                          Text(ihale.isinAdi, style: TextStyle(fontSize: 12))),
+                      child: Text(ihale.isinAdi,
+                          style:
+                              TextStyle(fontSize: 12, color: PRIMARY_COLOR))),
                 )
               ],
             ),
-            trailing: Icon(Icons.keyboard_arrow_right, size: 25),
+            trailing: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Icon(
+                  Icons.keyboard_arrow_right,
+                  size: 25,
+                  color: PRIMARY_COLOR,
+                ),
+              ],
+            ),
             onTap: () {
               Navigator.push(
-              context,
-              MaterialPageRoute(
-              builder: (context) => IhaleBilgiPage(ihale)));
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => IhaleBilgiPage(ihale)));
             },
           ));
     }).toList();
