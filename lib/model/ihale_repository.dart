@@ -4,8 +4,9 @@ import 'package:plug/service/ihale_service.dart';
 class IhaleRepository {
 
   static List<Ihale> loadIhaleList() {
-    fetchPhotos();
-    return data;
+    return IhaleApi.data;
+
+    // Demo data icin kullanilir.
     /*
     List<Ihale> allIhaleList = <Ihale>[
       Ihale(

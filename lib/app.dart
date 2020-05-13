@@ -4,11 +4,7 @@ import 'package:plug/helper/colors.dart';
 import 'package:plug/model/ihale_repository.dart';
 import 'package:plug/page/ihale_bilgi_page.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
+class PlugApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -106,10 +102,10 @@ class IhaleListWidget extends StatelessWidget {
                     child: Container(
                       child: Text(
                           NumberFormat.currency(
-                                      locale: 'tr',
-                                      customPattern: '#,###.##',
-                                      decimalDigits: 2)
-                                  .format(ihale.yaklasikMaliyet) +
+                              locale: 'tr',
+                              customPattern: '#,###.##',
+                              decimalDigits: 2)
+                              .format(ihale.yaklasikMaliyet) +
                               ' ₺',
                           style: TextStyle(fontSize: 12, color: PRIMARY_COLOR)),
                     )),
@@ -119,7 +115,7 @@ class IhaleListWidget extends StatelessWidget {
                       padding: EdgeInsets.only(left: 10),
                       child: Text(ihale.isinAdi,
                           style:
-                              TextStyle(fontSize: 12, color: PRIMARY_COLOR))),
+                          TextStyle(fontSize: 12, color: PRIMARY_COLOR))),
                 )
               ],
             ),
