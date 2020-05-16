@@ -35,7 +35,7 @@ class IhaleBilgiPage extends StatelessWidget {
           style: TextStyle(color: Colors.white, fontSize: 25),
         ),
         Container(
-          width: 120,
+          width: 115,
           child: new Divider(color: Colors.green),
         ),
         SizedBox(height: 10),
