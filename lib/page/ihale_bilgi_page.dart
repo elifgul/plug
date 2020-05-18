@@ -11,71 +11,55 @@ class IhaleBilgiPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final coursePrice = Container(
+    final price = Container(
       padding: const EdgeInsets.all(2),
       decoration: new BoxDecoration(
           border: new Border.all(color: Colors.white),
           borderRadius: BorderRadius.circular(5)),
       child: new Text(
         NumberFormat.currency(
-                locale: 'tr',
-                customPattern: '#,###.##',
-                decimalDigits: 2)
-            .format(ihale.yaklasikMaliyet) + ' ₺',
-        style: TextStyle(color: Colors.white),textAlign: TextAlign.end,
+                    locale: 'tr', customPattern: '#,###.##', decimalDigits: 2)
+                .format(ihale.yaklasikMaliyet) +
+            ' ₺',
+        style: TextStyle(color: Colors.white),
+        textAlign: TextAlign.end,
       ),
     );
+
+    final divider = Container(
+      width: 15,
+      child: new Divider(color: Colors.green, thickness: 4),
+    );
+
+    textWidget(String text, {double fontSize: 14}) {
+      return Padding(
+          padding: EdgeInsets.only(left: 2),
+          child: Text(
+            text,
+            style: TextStyle(color: Colors.white, fontSize: fontSize),
+          ));
+    }
 
     final topContentText = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         SizedBox(height: 40),
-        Text(
-          ihale.id.toString(),
-          style: TextStyle(color: Colors.white, fontSize: 25),
-        ),
+        textWidget(ihale.id.toString(), fontSize: 25),
         Container(
           width: 115,
           child: new Divider(color: Colors.green),
         ),
         SizedBox(height: 10),
-        Text(
-          ihale.isinAdi,
-          style: TextStyle(color: Colors.white, fontSize: 15),
-        ),
+        textWidget(ihale.isinAdi, fontSize: 15),
         SizedBox(height: 30),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Expanded(
-              child: Container(
-                width: 15,
-                child: new Divider(color: Colors.green, thickness: 4),
-              ),
-            ),
-            Expanded(
-                flex: 1,
-                child: Padding(
-                    padding: EdgeInsets.only(left: 2),
-                    child: Text(
-                      ihale.tur,
-                      style: TextStyle(color: Colors.white),
-                    ))),
-            Expanded(
-              child: Container(
-                width: 15,
-                child: new Divider(color: Colors.green, thickness: 4,),
-              ),
-            ),
-            Expanded(
-                flex: 2,
-                child: Padding(
-                    padding: EdgeInsets.only(left: 2),
-                    child: Text(
-                      ihale.usul,
-                      style: TextStyle(color: Colors.white),
-                    ))),
-            Expanded(flex: 3, child: coursePrice)
+            Expanded(child: divider),
+            Expanded(flex: 1, child: textWidget(ihale.tur)),
+            Expanded(child: divider),
+            Expanded(flex: 2, child: textWidget(ihale.usul)),
+            Expanded(flex: 3, child: price)
           ],
         ),
       ],
@@ -109,30 +93,29 @@ class IhaleBilgiPage extends StatelessWidget {
       ihale.aciklama,
       style: TextStyle(fontSize: 18),
     );
-    final readButton = Container(
-        width: MediaQuery.of(context).size.width * 0.25,
-        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 5),
-        child: RaisedButton(
-          onPressed: () => {},
-          color: PRIMARY_COLOR,
-          child: Text("ONAYLA", style: TextStyle(color: Colors.white)),
-        ));
-    final cancelButton = Container(
-        width: MediaQuery.of(context).size.width * 0.25,
-        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 5),
-        child: RaisedButton(
-          onPressed: () => {},
-          color: PRIMARY_COLOR,
-          child: Text("REDDET", style: TextStyle(color: Colors.white)),
-        ));
-    final explanationButton = Container(
-        width: MediaQuery.of(context).size.width * 0.25,
-        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 5),
-        child: RaisedButton(
-          onPressed: () => {},
-          color: PRIMARY_COLOR,
-          child: Text("İZAH", style: TextStyle(color: Colors.white)),
-        ));
+
+    button(String text, IconData icon, {Color color: Colors.white}) {
+      return Container(
+          width: MediaQuery.of(context).size.width * 0.25,
+          padding: EdgeInsets.symmetric(vertical: 16, horizontal: 5),
+          child: RaisedButton(
+            onPressed: () => {},
+            color: PRIMARY_COLOR,
+            child: Row(
+              children: <Widget>[
+                Icon(icon, color: color, size: 15, ),
+                Padding (
+                  padding: EdgeInsets.all(3),
+                  child: Text(text, style: TextStyle(color: Colors.white,),),
+                )
+              ],
+            ),
+          ));
+    }
+    final readButton = button("ONAY", Icons.check, color: Colors.green);
+    final cancelButton = button("RED", Icons.close, color: Colors.red);
+    final explanationButton = button("İZAH", Icons.mail_outline);
+
     final bottomContent = Container(
       width: MediaQuery.of(context).size.width,
       padding: EdgeInsets.all(40),

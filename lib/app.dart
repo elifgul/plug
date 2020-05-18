@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:plug/helper/colors.dart';
@@ -48,12 +50,38 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      body: IhaleListWidget(),
+      body: IhaleWidget(),
     );
   }
 }
 
-class IhaleListWidget extends StatelessWidget {
+class IhaleWidget extends StatefulWidget {
+  @override
+  _IhaleWidgetState createState() => _IhaleWidgetState();
+}
+
+class _IhaleWidgetState extends State<IhaleWidget> {
+  Timer timer;
+  Future<List<Ihale>> ihaleList = IhaleApi.fetchIhaleList();
+
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer.periodic(Duration(minutes: 15), (Timer t) => initIhaleList());
+  }
+
+  void initIhaleList() {
+    setState(() {
+      ihaleList = IhaleApi.fetchIhaleList();
+    });
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
+
   Widget getIhaleListWidget() {
     return FutureBuilder(
       builder: (context, snapshot) {
@@ -153,7 +181,7 @@ class IhaleListWidget extends StatelessWidget {
           return ColorLoader();
         }
       },
-      future: IhaleApi.fetchIhaleList(),
+      future: ihaleList,
     );
   }
 
