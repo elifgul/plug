@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:plug/config/config_reader.dart';
-import 'package:plug/model/ihale.dart';
+import 'package:plug/core/config/config_reader.dart';
+import 'package:plug/core/model/ihale.dart';
 
 abstract class IhaleApi {
   static Future<List<Ihale>> fetchIhaleList() async {

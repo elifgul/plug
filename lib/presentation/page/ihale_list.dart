@@ -2,36 +2,24 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:plug/helper/colors.dart';
-import 'package:plug/model/ihale.dart';
-import 'package:plug/page/ihale_bilgi_page.dart';
-import 'package:plug/service/ihale_service.dart';
+import 'package:plug/core/config/config_reader.dart';
+import 'package:plug/core/helper/colors.dart';
+import 'package:plug/core/model/ihale.dart';
+import 'package:plug/core/service/ihale_service.dart';
+import 'package:plug/presentation/page/login.dart';
+import 'package:plug/presentation/widget/widgets.dart';
 
-import 'helper/loader.dart';
+import 'ihale_bilgi.dart';
 
-class PlugApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'HYS PLUG',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: HomePage(title: 'HYS PLUG'),
-    );
-  }
-}
-
-class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
+class IhaleListPage extends StatefulWidget {
+  IhaleListPage({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _IhaleListPageState createState() => _IhaleListPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _IhaleListPageState extends State<IhaleListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,8 +33,11 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: PRIMARY_COLOR,
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.settings),
-            onPressed: () {},
+            icon: Icon(Icons.exit_to_app),
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => LoginPage()));
+            },
           )
         ],
       ),
@@ -67,7 +58,7 @@ class _IhaleWidgetState extends State<IhaleWidget> {
   @override
   void initState() {
     super.initState();
-    timer = Timer.periodic(Duration(minutes: 15), (Timer t) => initIhaleList());
+    timer = Timer.periodic(Duration(minutes: ConfigReader.getSyncronTimer()), (Timer t) => initIhaleList());
   }
 
   void initIhaleList() {
@@ -97,7 +88,7 @@ class _IhaleWidgetState extends State<IhaleWidget> {
                   margin: new EdgeInsets.symmetric(horizontal: 5, vertical: 3),
                   child: ListTile(
                     contentPadding:
-                        EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                     leading: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -113,7 +104,7 @@ class _IhaleWidgetState extends State<IhaleWidget> {
                           child: Container(
                             width: 45,
                             child:
-                                new Divider(color: Colors.green, thickness: 2),
+                            new Divider(color: Colors.green, thickness: 2),
                           ),
                         ),
                         Text(
@@ -140,10 +131,10 @@ class _IhaleWidgetState extends State<IhaleWidget> {
                             child: Container(
                               child: Text(
                                   NumberFormat.currency(
-                                              locale: 'tr',
-                                              customPattern: '#,###.##',
-                                              decimalDigits: 2)
-                                          .format(ihale.yaklasikMaliyet) +
+                                      locale: 'tr',
+                                      customPattern: '#,###.##',
+                                      decimalDigits: 2)
+                                      .format(ihale.yaklasikMaliyet) +
                                       ' ₺',
                                   style: TextStyle(
                                       fontSize: 12, color: PRIMARY_COLOR)),

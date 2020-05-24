@@ -1,5 +1,4 @@
-import 'package:plug/model/ihale.dart';
-import 'package:plug/service/ihale_service.dart';
+import 'package:plug/core/model/ihale.dart';
 
 class IhaleRepository {
 

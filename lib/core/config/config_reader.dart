@@ -13,4 +13,8 @@ abstract class ConfigReader {
   static String getApiUrl() {
     return _config['hysApiUrl'] as String;
   }
+
+  static int getSyncronTimer() {
+    return _config['syncronTimer'];
+  }
 }

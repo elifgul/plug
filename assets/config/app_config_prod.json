@@ -1,3 +1,4 @@
 {
-  "hysApiUrl": "http://hys.com.tr/hys-web/api/plug/list"
+  "hysApiUrl": "http://hys.com.tr/hys-web/api/plug/list",
+  "syncronTimer": 5
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:plug/service/ihale_service.dart';
+import 'package:plug/core/service/ihale_service.dart';
 
-import 'app.dart';
-import 'config/config_reader.dart';
+import 'presentation/page/app.dart';
+import 'core/config/config_reader.dart';
 import 'package:provider/provider.dart';
 
 Future<void> mainCommon(String env) async {

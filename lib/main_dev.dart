@@ -1,4 +1,4 @@
-import 'config/environment.dart';
+import 'core/config/environment.dart';
 import 'main_common.dart';
 
 Future<void> main() async {
