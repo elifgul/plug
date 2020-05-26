@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:plug/core/helper/colors.dart';
+import 'package:plug/presentation/helper/ui_helper.dart';
 
 import 'dot_type.dart';
 
@@ -14,9 +14,9 @@ class ColorLoader extends StatefulWidget {
   final Icon dotIcon;
 
   ColorLoader(
-      {this.dotOneColor = PRIMARY_COLOR,
-      this.dotTwoColor = PRIMARY_COLOR,
-      this.dotThreeColor = PRIMARY_COLOR,
+      {this.dotOneColor = UIHelper.PRIMARY_COLOR,
+      this.dotTwoColor = UIHelper.PRIMARY_COLOR,
+      this.dotThreeColor = UIHelper.PRIMARY_COLOR,
       this.duration = const Duration(milliseconds: 1000),
       this.dotType = DotType.circle,
       this.dotIcon = const Icon(Icons.blur_on)});

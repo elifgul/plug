@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:plug/core/helper/colors.dart';
+import 'package:plug/presentation/helper/ui_helper.dart';
 import 'package:plug/presentation/page/ihale_list.dart';
 
 class LoginPage extends StatefulWidget {
@@ -11,13 +11,17 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final logo = Padding(
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.only(bottom: 50),
       child: Hero(
           tag: 'hero',
           child: CircleAvatar(
             radius: 56,
-            backgroundColor: Colors.white,
-            child: Image.asset('assets/logo.png'),
+            backgroundColor: UIHelper.WHITE_COLOR,
+            child: Column (children: [
+              Image.asset('assets/logo.png'),
+              SizedBox(height: 10),
+              Text('HYS PLUG', style: TextStyle(color: UIHelper.PRIMARY_COLOR, fontWeight: FontWeight.bold),),
+            ],)
           )),
     );
     final inputEmail = Padding(
@@ -49,8 +53,8 @@ class _LoginPageState extends State<LoginPage> {
         height: 56,
         child: RaisedButton(
           child: Text('Giriş Yap',
-              style: TextStyle(color: Colors.white, fontSize: 20)),
-          color: PRIMARY_COLOR,
+              style: TextStyle(color: UIHelper.WHITE_COLOR, fontSize: 20)),
+          color: UIHelper.PRIMARY_COLOR,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
           onPressed: () {
@@ -67,11 +71,11 @@ class _LoginPageState extends State<LoginPage> {
     final buttonForgotPassword = FlatButton(
         child: Text(
           'Şifremi Unuttum',
-          style: TextStyle(color: Colors.grey, fontSize: 16),
+          style: TextStyle(color: UIHelper.GREY_COLOR, fontSize: 16),
         ),
         onPressed: null);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: UIHelper.WHITE_COLOR,
       body: Center(
         child: ListView(
           shrinkWrap: true,

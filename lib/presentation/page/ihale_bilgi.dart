@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:plug/core/helper/colors.dart';
+import 'package:plug/presentation/helper/ui_helper.dart';
 import 'package:plug/core/model/ihale.dart';
 
 class IhaleBilgiPage extends StatelessWidget {
@@ -14,21 +14,21 @@ class IhaleBilgiPage extends StatelessWidget {
     final price = Container(
       padding: const EdgeInsets.all(2),
       decoration: new BoxDecoration(
-          border: new Border.all(color: Colors.white),
+          border: new Border.all(color: UIHelper.WHITE_COLOR),
           borderRadius: BorderRadius.circular(5)),
       child: new Text(
         NumberFormat.currency(
                     locale: 'tr', customPattern: '#,###.##', decimalDigits: 2)
                 .format(ihale.yaklasikMaliyet) +
             ' ₺',
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(color: UIHelper.WHITE_COLOR),
         textAlign: TextAlign.end,
       ),
     );
 
     final divider = Container(
       width: 15,
-      child: new Divider(color: Colors.green, thickness: 4),
+      child: new Divider(color: UIHelper.GREEN_COLOR, thickness: 4),
     );
 
     textWidget(String text, {double fontSize: 14}) {
@@ -36,7 +36,7 @@ class IhaleBilgiPage extends StatelessWidget {
           padding: EdgeInsets.only(left: 2),
           child: Text(
             text,
-            style: TextStyle(color: Colors.white, fontSize: fontSize),
+            style: TextStyle(color: UIHelper.WHITE_COLOR, fontSize: fontSize),
           ));
     }
 
@@ -47,7 +47,7 @@ class IhaleBilgiPage extends StatelessWidget {
         textWidget(ihale.id.toString(), fontSize: 25),
         Container(
           width: 115,
-          child: new Divider(color: Colors.green),
+          child: new Divider(color: UIHelper.GREEN_COLOR),
         ),
         SizedBox(height: 10),
         textWidget(ihale.isinAdi, fontSize: 15),
@@ -71,7 +71,7 @@ class IhaleBilgiPage extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.35,
           padding: EdgeInsets.fromLTRB(40, 40, 40, 0),
           width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(color: PRIMARY_COLOR),
+          decoration: BoxDecoration(color: UIHelper.PRIMARY_COLOR),
           child: Center(
             child: topContentText,
           ),
@@ -83,7 +83,7 @@ class IhaleBilgiPage extends StatelessWidget {
             onTap: () {
               Navigator.pop(context);
             },
-            child: Icon(Icons.arrow_back, color: Colors.white),
+            child: Icon(Icons.arrow_back, color: UIHelper.WHITE_COLOR),
           ),
         )
       ],
@@ -94,26 +94,26 @@ class IhaleBilgiPage extends StatelessWidget {
       style: TextStyle(fontSize: 18),
     );
 
-    button(String text, IconData icon, {Color color: Colors.white}) {
+    button(String text, IconData icon, {Color color: UIHelper.WHITE_COLOR}) {
       return Container(
           width: MediaQuery.of(context).size.width * 0.25,
           padding: EdgeInsets.symmetric(vertical: 16, horizontal: 5),
           child: RaisedButton(
             onPressed: () => {},
-            color: PRIMARY_COLOR,
+            color: UIHelper.PRIMARY_COLOR,
             child: Row(
               children: <Widget>[
                 Icon(icon, color: color, size: 15, ),
                 Padding (
                   padding: EdgeInsets.all(3),
-                  child: Text(text, style: TextStyle(color: Colors.white,),),
+                  child: Text(text, style: TextStyle(color: UIHelper.WHITE_COLOR),),
                 )
               ],
             ),
           ));
     }
-    final readButton = button("ONAY", Icons.check, color: Colors.green);
-    final cancelButton = button("RED", Icons.close, color: Colors.red);
+    final readButton = button("ONAY", Icons.check, color: UIHelper.GREEN_COLOR);
+    final cancelButton = button("RED", Icons.close, color: UIHelper.RED_COLOR);
     final explanationButton = button("İZAH", Icons.mail_outline);
 
     final bottomContent = Container(

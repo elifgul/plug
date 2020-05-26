@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:plug/core/config/config_reader.dart';
-import 'package:plug/core/helper/colors.dart';
+import 'package:plug/presentation/helper/ui_helper.dart';
 import 'package:plug/core/model/ihale.dart';
 import 'package:plug/core/service/ihale_service.dart';
 import 'package:plug/presentation/page/login.dart';
@@ -30,7 +30,7 @@ class _IhaleListPageState extends State<IhaleListPage> {
         ),
         title: Text(widget.title),
         elevation: 0.1,
-        backgroundColor: PRIMARY_COLOR,
+        backgroundColor: UIHelper.PRIMARY_COLOR,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.exit_to_app),
@@ -96,7 +96,7 @@ class _IhaleWidgetState extends State<IhaleWidget> {
                           ihale.id.toString(),
                           style: TextStyle(
                             fontSize: 12,
-                            color: PRIMARY_COLOR,
+                            color: UIHelper.PRIMARY_COLOR,
                           ),
                         ),
                         Expanded(
@@ -104,14 +104,14 @@ class _IhaleWidgetState extends State<IhaleWidget> {
                           child: Container(
                             width: 45,
                             child:
-                            new Divider(color: Colors.green, thickness: 2),
+                            new Divider(color: UIHelper.GREEN_COLOR, thickness: 2),
                           ),
                         ),
                         Text(
                           ihale.usul,
                           style: TextStyle(
                             fontSize: 12,
-                            color: PRIMARY_COLOR,
+                            color: UIHelper.PRIMARY_COLOR,
                           ),
                         ),
                       ],
@@ -120,7 +120,7 @@ class _IhaleWidgetState extends State<IhaleWidget> {
                       ihale.daireBasAdi + '\n' + ihale.mudurlukAdi,
                       style: TextStyle(
                         fontSize: 13,
-                        color: PRIMARY_COLOR,
+                        color: UIHelper.PRIMARY_COLOR,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -137,7 +137,7 @@ class _IhaleWidgetState extends State<IhaleWidget> {
                                       .format(ihale.yaklasikMaliyet) +
                                       ' ₺',
                                   style: TextStyle(
-                                      fontSize: 12, color: PRIMARY_COLOR)),
+                                      fontSize: 12, color: UIHelper.PRIMARY_COLOR)),
                             )),
                         Expanded(
                           flex: 4,
@@ -145,7 +145,7 @@ class _IhaleWidgetState extends State<IhaleWidget> {
                               padding: EdgeInsets.only(left: 10),
                               child: Text(ihale.isinAdi,
                                   style: TextStyle(
-                                      fontSize: 12, color: PRIMARY_COLOR))),
+                                      fontSize: 12, color: UIHelper.PRIMARY_COLOR))),
                         )
                       ],
                     ),
@@ -155,7 +155,7 @@ class _IhaleWidgetState extends State<IhaleWidget> {
                         Icon(
                           Icons.keyboard_arrow_right,
                           size: 25,
-                          color: PRIMARY_COLOR,
+                          color: UIHelper.PRIMARY_COLOR,
                         ),
                       ],
                     ),
