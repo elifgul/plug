@@ -104,7 +104,7 @@ class _IhaleWidgetState extends State<IhaleWidget> {
                           child: Container(
                             width: 45,
                             child:
-                            new Divider(color: UIHelper.GREEN_COLOR, thickness: 2),
+                            new Divider(color: UIHelper.ACCENT_COLOR, thickness: 2),
                           ),
                         ),
                         Text(

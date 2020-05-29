@@ -28,7 +28,7 @@ class IhaleBilgiPage extends StatelessWidget {
 
     final divider = Container(
       width: 15,
-      child: new Divider(color: UIHelper.GREEN_COLOR, thickness: 4),
+      child: new Divider(color: UIHelper.ACCENT_COLOR, thickness: 4),
     );
 
     textWidget(String text, {double fontSize: 14}) {
@@ -47,7 +47,7 @@ class IhaleBilgiPage extends StatelessWidget {
         textWidget(ihale.id.toString(), fontSize: 25),
         Container(
           width: 115,
-          child: new Divider(color: UIHelper.GREEN_COLOR),
+          child: new Divider(color: UIHelper.ACCENT_COLOR),
         ),
         SizedBox(height: 10),
         textWidget(ihale.isinAdi, fontSize: 15),
@@ -112,7 +112,7 @@ class IhaleBilgiPage extends StatelessWidget {
             ),
           ));
     }
-    final readButton = button("ONAY", Icons.check, color: UIHelper.GREEN_COLOR);
+    final readButton = button("ONAY", Icons.check, color: UIHelper.ACCENT_COLOR);
     final cancelButton = button("RED", Icons.close, color: UIHelper.RED_COLOR);
     final explanationButton = button("İZAH", Icons.mail_outline);
 
