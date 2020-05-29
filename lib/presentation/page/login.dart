@@ -18,8 +18,8 @@ class _LoginPageState extends State<LoginPage> {
             radius: 56,
             backgroundColor: UIHelper.WHITE_COLOR,
             child: Column (children: [
-              Image.asset('assets/logo.png'),
-              SizedBox(height: 10),
+              Image.asset('assets/ibb-logo.png'),
+              SizedBox(height: 30),
               Text('HYS PLUG', style: TextStyle(color: UIHelper.PRIMARY_COLOR, fontWeight: FontWeight.bold),),
             ],)
           )),

@@ -34,4 +34,5 @@ flutter:
   assets:
     - assets/icon.png
     - assets/logo.png
+    - assets/ibb-logo.png
     - assets/config/
