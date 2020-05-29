@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 class Ihale {
   Ihale({
       @required this.id,
+      @required this.dosyaId,
       @required this.isinAdi,
       this.aciklama,
       @required this.daireBasAdi,
@@ -12,6 +13,7 @@ class Ihale {
       @required this.yaklasikMaliyet});
 
   int id;
+  String dosyaId;
   String isinAdi;
   String aciklama;
   String daireBasAdi;
@@ -24,6 +26,7 @@ class Ihale {
   factory Ihale.fromJson(Map<String, dynamic> json) {
     return Ihale(
       id: json['id'],
+      dosyaId: json['dosyaId'],
       isinAdi: json['isinAdi'],
       aciklama: json['aciklama'],
       daireBasAdi: json['daireBasAd'],
