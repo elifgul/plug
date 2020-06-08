@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:plug/presentation/helper/ui_helper.dart';
-import 'package:plug/presentation/page/ihale_list.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:plug/feature/data/datasource/ihale_local_datasource.dart';
+import 'package:plug/feature/data/datasource/ihale_remote_datasource.dart';
+import 'package:plug/feature/data/repository/ihale_repository_impl.dart';
+import 'package:plug/feature/presentation/bloc/bloc.dart';
+import 'package:plug/feature/presentation/helper/ui_helper.dart';
+
+import 'ihale_list_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -58,16 +64,17 @@ class _LoginPageState extends State<LoginPage> {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => IhaleListPage(
-                          title: 'HYS PLUG',
-                        )));
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) => BlocProvider(
+                create: (context) => IhaleBloc(ihaleRepository: IhaleRepositoryImpl(localDataSource: IhaleLocalDataSourceImpl(), remoteDataSource: IhaleRemoteDataSourceImpl())),
+                  child: IhaleListPage(title: 'HYS PLUG'),
+            ),
+            ));
           },
         ),
       ),
     );
+
     final buttonForgotPassword = FlatButton(
         child: Text(
           'Şifremi Unuttum',

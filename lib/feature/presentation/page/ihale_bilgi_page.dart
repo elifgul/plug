@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:plug/presentation/helper/ui_helper.dart';
-import 'package:plug/core/model/ihale.dart';
+import 'package:plug/feature/presentation/helper/ui_helper.dart';
+import 'package:plug/feature/domain/entity/ihale.dart';
 
 class IhaleBilgiPage extends StatelessWidget {
   IhaleBilgiPage(this.ihale);

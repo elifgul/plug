@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class Ihale {
   Ihale({
@@ -21,21 +21,6 @@ class Ihale {
   String tur;
   String usul;
   double yaklasikMaliyet;
-
-
-  factory Ihale.fromJson(Map<String, dynamic> json) {
-    return Ihale(
-      id: json['id'],
-      dosyaId: json['dosyaId'],
-      isinAdi: json['isinAdi'],
-      aciklama: json['aciklama'],
-      daireBasAdi: json['daireBasAd'],
-      mudurlukAdi: json['mudurlukAd'],
-      tur: json['tur'],
-      usul: json['usul'],
-      yaklasikMaliyet: json['yaklasikMaliyet'],
-    );
-  }
 
   @override
   String toString() {

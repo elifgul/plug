@@ -1,4 +1,4 @@
-import 'package:plug/core/model/ihale.dart';
+import 'package:plug/feature/domain/entity/ihale.dart';
 
 class IhaleRepository {
 

@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:plug/presentation/helper/ui_helper.dart';
+import 'package:plug/feature/presentation/helper/ui_helper.dart';
 
 class TextStyles {
 
