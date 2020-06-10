@@ -3,6 +3,7 @@ import 'package:plug/feature/data/datasource/ihale_local_datasource.dart';
 import 'package:plug/feature/data/datasource/ihale_remote_datasource.dart';
 import 'package:plug/feature/domain/repository/ihale_repository.dart';
 import 'package:plug/feature/presentation/bloc/bloc.dart';
+import 'package:plug/feature/presentation/bloc/ihale_bilgi_bloc.dart';
 
 import 'feature/data/repository/ihale_repository_impl.dart';
 
@@ -12,6 +13,11 @@ Future<void> init() async {
   // Bloc
   sl.registerFactory(
     () => IhaleBloc(
+      ihaleRepository: sl(),
+    ),
+  );
+  sl.registerFactory(
+        () => IhaleBilgiBloc(
       ihaleRepository: sl(),
     ),
   );

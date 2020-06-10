@@ -17,7 +17,7 @@ class ListLoading extends IhaleState {
 
 
 class Loaded extends IhaleState {
-  Ihale ihale;
+  final Ihale ihale;
 
   Loaded(this.ihale);
 
@@ -26,7 +26,7 @@ class Loaded extends IhaleState {
 }
 
 class ListLoaded extends IhaleState {
-  List<Ihale> ihaleList;
+  final List<Ihale> ihaleList;
 
   ListLoaded(this.ihaleList);
 

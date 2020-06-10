@@ -25,13 +25,15 @@ class IhaleRepositoryImpl implements IhaleRepository {
   }
 
   @override
-  Future<bool> confirmIhale(int id) {}
+  Future<Ihale> confirmIhale(int id) {
+    return null;
+  }
 
   @override
-  Future<bool> rejectIhale(int id) {}
+  Future<Ihale> rejectIhale(int id) {}
 
   @override
-  Future<bool> explanationIhale(int id) {}
+  Future<Ihale> explanationIhale(int id) {}
 
   BaseDataSource getDataSource() {
     if (ConfigReader.environment == Environment.dev) {

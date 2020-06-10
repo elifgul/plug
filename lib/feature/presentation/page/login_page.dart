@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plug/feature/data/datasource/ihale_local_datasource.dart';
-import 'package:plug/feature/data/datasource/ihale_remote_datasource.dart';
+import 'package:plug/feature/data/datasource/datasource.dart';
 import 'package:plug/feature/data/repository/ihale_repository_impl.dart';
 import 'package:plug/feature/presentation/bloc/bloc.dart';
 import 'package:plug/feature/presentation/helper/ui_helper.dart';

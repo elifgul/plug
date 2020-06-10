@@ -1,11 +1,20 @@
-import 'package:plug/feature/data/datasource/datasource.dart';
 import 'package:plug/feature/data/model/ihale_model.dart';
 
-abstract class IhaleLocalDataSource extends BaseDataSource<IhaleModel> {}
+import 'ihale_datasource.dart';
+
+abstract class IhaleLocalDataSource extends IhaleDataSource {}
 
 class IhaleLocalDataSourceImpl implements IhaleLocalDataSource {
   @override
-  Future<IhaleModel> get(int id) {}
+  Future<IhaleModel> get(int id) async {
+    List<IhaleModel> allIhaleList = await getList();
+    for (var ihaleModel in allIhaleList) {
+      if (ihaleModel.id == id) {
+        return ihaleModel;
+      }
+    }
+    return null;
+  }
 
   @override
   Future<List<IhaleModel>> getList() async {
@@ -18,7 +27,7 @@ class IhaleLocalDataSourceImpl implements IhaleLocalDataSource {
             'İhale dokümanı ekinde yer alan Talep Dağılım Cetvelindeki hastanelere teslim edilecektir.',
         mudurlukAdi: 'Satınalma Müdürlüğü',
         daireBasAdi: 'Satınalma Daire Başkanlığı',
-        tur: 'İH',
+        tur: 'İhale',
         usul: '4734/19',
         yaklasikMaliyet: 2100000,
       ),
@@ -30,7 +39,7 @@ class IhaleLocalDataSourceImpl implements IhaleLocalDataSource {
             'İhale dokümanı ekinde yer alan Talep Dağılım Cetvelindeki hastanelere teslim edilecektir.',
         mudurlukAdi: 'Satınalma Müdürlüğü',
         daireBasAdi: 'Satınalma Daire Başkanlığı',
-        tur: 'DT',
+        tur: 'Doğrudan Temin',
         usul: '4734/19',
         yaklasikMaliyet: 300000000.50,
       ),
@@ -42,7 +51,7 @@ class IhaleLocalDataSourceImpl implements IhaleLocalDataSource {
             'İhale dokümanı ekinde yer alan Talep Dağılım Cetvelindeki hastanelere teslim edilecektir.',
         mudurlukAdi: 'Satınalma Müdürlüğü',
         daireBasAdi: 'Satınalma Daire Başkanlığı',
-        tur: 'İH',
+        tur: 'İhale',
         usul: '4734/19',
         yaklasikMaliyet: 200000,
       ),
@@ -54,7 +63,7 @@ class IhaleLocalDataSourceImpl implements IhaleLocalDataSource {
             'İhale dokümanı ekinde yer alan Talep Dağılım Cetvelindeki hastanelere teslim edilecektir.',
         mudurlukAdi: 'Satınalma Müdürlüğü',
         daireBasAdi: 'Satınalma Daire Başkanlığı',
-        tur: 'İH',
+        tur: 'İhale',
         usul: '4734/19',
         yaklasikMaliyet: 200000,
       ),
@@ -66,7 +75,7 @@ class IhaleLocalDataSourceImpl implements IhaleLocalDataSource {
             'İhale dokümanı ekinde yer alan Talep Dağılım Cetvelindeki hastanelere teslim edilecektir.',
         mudurlukAdi: 'Satınalma Müdürlüğü',
         daireBasAdi: 'Satınalma Daire Başkanlığı',
-        tur: 'İH',
+        tur: 'İhale',
         usul: '4734/19',
         yaklasikMaliyet: 200000,
       ),
@@ -78,7 +87,7 @@ class IhaleLocalDataSourceImpl implements IhaleLocalDataSource {
             'İhale dokümanı ekinde yer alan Talep Dağılım Cetvelindeki hastanelere teslim edilecektir.',
         mudurlukAdi: 'Satınalma Müdürlüğü',
         daireBasAdi: 'Satınalma Daire Başkanlığı',
-        tur: 'İH',
+        tur: 'İhale',
         usul: '4734/19',
         yaklasikMaliyet: 200000,
       ),
@@ -90,7 +99,7 @@ class IhaleLocalDataSourceImpl implements IhaleLocalDataSource {
             'İhale dokümanı ekinde yer alan Talep Dağılım Cetvelindeki hastanelere teslim edilecektir.',
         mudurlukAdi: 'Satınalma Müdürlüğü',
         daireBasAdi: 'Satınalma Daire Başkanlığı',
-        tur: 'İH',
+        tur: 'İhale',
         usul: '4734/19',
         yaklasikMaliyet: 200000,
       ),
@@ -102,7 +111,7 @@ class IhaleLocalDataSourceImpl implements IhaleLocalDataSource {
             'İhale dokümanı ekinde yer alan Talep Dağılım Cetvelindeki hastanelere teslim edilecektir.',
         mudurlukAdi: 'Satınalma Müdürlüğü',
         daireBasAdi: 'Satınalma Daire Başkanlığı',
-        tur: 'İH',
+        tur: 'İhale',
         usul: '4734/19',
         yaklasikMaliyet: 200000,
       ),
@@ -110,5 +119,20 @@ class IhaleLocalDataSourceImpl implements IhaleLocalDataSource {
     print(allIhaleList.length);
     await new Future.delayed(new Duration(seconds: 2));
     return allIhaleList;
+  }
+
+  @override
+  Future<IhaleModel> explanationIhale(int id) {
+
+  }
+
+  @override
+  Future<IhaleModel> rejectIhale(int id) {
+
+  }
+
+  @override
+  Future<IhaleModel> confirmIhale(int id) {
+
   }
 }

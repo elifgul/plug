@@ -1,16 +1,63 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:plug/feature/presentation/helper/ui_helper.dart';
 import 'package:plug/feature/domain/entity/ihale.dart';
+import 'package:plug/feature/presentation/bloc/ihale_bilgi_bloc.dart';
+import 'package:plug/feature/presentation/bloc/ihale_list_bloc.dart';
+import 'package:plug/feature/presentation/bloc/ihale_event.dart';
+import 'package:plug/feature/presentation/bloc/ihale_state.dart';
+import 'package:plug/feature/presentation/helper/ui_helper.dart';
+import 'package:plug/feature/presentation/widget/loader.dart';
 
-class IhaleBilgiPage extends StatelessWidget {
-  IhaleBilgiPage(this.ihale);
-
+class IhaleBilgiPageBloc extends StatefulWidget {
   final Ihale ihale;
 
+  IhaleBilgiPageBloc({this.ihale});
+
+  @override
+  _IhaleBilgiPageBlocState createState() => _IhaleBilgiPageBlocState();
+}
+
+class _IhaleBilgiPageBlocState extends State<IhaleBilgiPageBloc> {
   @override
   Widget build(BuildContext context) {
+    return getIhaleBilgiBloc();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    BlocProvider.of<IhaleBilgiBloc>(context)..add(GetIhaleDetail(widget.ihale));
+  }
+
+  Widget getIhaleBilgiBloc() {
+    return BlocBuilder<IhaleBilgiBloc, IhaleState>(
+      builder: (context, state) {
+       if (state is Loading) {
+         return buildLoading();
+        } else if (state is Loaded) {
+          return getIhaleBilgiWidget(context, state);
+        } else {
+          return SnackBar(
+            content: Text('Error State!'),
+          );
+        }
+      },
+    );
+  }
+
+  Widget buildLoading() {
+    return Scaffold(
+        body:Center(
+      child: Container(
+        color: UIHelper.WHITE_COLOR,
+        child: ColorLoader(),
+      ),
+    ));
+  }
+
+  Widget getIhaleBilgiWidget(BuildContext context, Loaded state) {
+    Ihale ihale = state.ihale;
     final price = Container(
       padding: const EdgeInsets.all(2),
       decoration: new BoxDecoration(
@@ -21,7 +68,7 @@ class IhaleBilgiPage extends StatelessWidget {
                     locale: 'tr', customPattern: '#,###.##', decimalDigits: 2)
                 .format(ihale.yaklasikMaliyet) +
             ' ₺',
-        style: TextStyle(color: UIHelper.WHITE_COLOR),
+        style: TextStyle(color: UIHelper.WHITE_COLOR, fontFamily: 'Montserrat'),
         textAlign: TextAlign.end,
       ),
     );
@@ -33,17 +80,20 @@ class IhaleBilgiPage extends StatelessWidget {
 
     textWidget(String text, {double fontSize: 14}) {
       return Padding(
-          padding: EdgeInsets.only(left: 2),
+          padding: EdgeInsets.only(left: 5),
           child: Text(
             text,
-            style: TextStyle(color: UIHelper.WHITE_COLOR, fontSize: fontSize),
+            style: TextStyle(
+                color: UIHelper.WHITE_COLOR,
+                fontFamily: 'Montserrat',
+                fontSize: fontSize),
           ));
     }
 
     final topContentText = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        SizedBox(height: 40),
+        SizedBox(height: 30),
         textWidget(ihale.id.toString(), fontSize: 25),
         Container(
           width: 115,
@@ -56,10 +106,17 @@ class IhaleBilgiPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Expanded(child: divider),
-            Expanded(flex: 1, child: textWidget(ihale.tur)),
+            Expanded(flex: 3, child: textWidget(ihale.tur)),
+            Expanded(flex: 4, child: price)
+          ],
+        ),
+        SizedBox(height: 5),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
             Expanded(child: divider),
-            Expanded(flex: 2, child: textWidget(ihale.usul)),
-            Expanded(flex: 3, child: price)
+            Expanded(flex: 3, child: textWidget(ihale.usul)),
+            Expanded(flex: 4, child: Text('')),
           ],
         ),
       ],
@@ -91,7 +148,10 @@ class IhaleBilgiPage extends StatelessWidget {
 
     final bottomContentText = Text(
       ihale.aciklama,
-      style: TextStyle(fontSize: 18),
+      style: TextStyle(
+          fontSize: 18,
+          fontFamily: 'Montserrat',
+          color: UIHelper.PRIMARY_COLOR),
     );
 
     button(String text, IconData icon, {Color color: UIHelper.WHITE_COLOR}) {
@@ -103,16 +163,28 @@ class IhaleBilgiPage extends StatelessWidget {
             color: UIHelper.PRIMARY_COLOR,
             child: Row(
               children: <Widget>[
-                Icon(icon, color: color, size: 15, ),
-                Padding (
+                Icon(
+                  icon,
+                  color: color,
+                  size: 15,
+                ),
+                Padding(
                   padding: EdgeInsets.all(3),
-                  child: Text(text, style: TextStyle(color: UIHelper.WHITE_COLOR),),
+                  child: Text(
+                    text,
+                    style: TextStyle(
+                      color: UIHelper.WHITE_COLOR,
+                      fontFamily: 'Montserrat',
+                    ),
+                  ),
                 )
               ],
             ),
           ));
     }
-    final readButton = button("ONAY", Icons.check, color: UIHelper.ACCENT_COLOR);
+
+    final readButton =
+        button("ONAY", Icons.check, color: UIHelper.ACCENT_COLOR);
     final cancelButton = button("RED", Icons.close, color: UIHelper.RED_COLOR);
     final explanationButton = button("İZAH", Icons.mail_outline);
 
@@ -124,6 +196,7 @@ class IhaleBilgiPage extends StatelessWidget {
           children: <Widget>[
             bottomContentText,
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [readButton, cancelButton, explanationButton],
             )
           ],
