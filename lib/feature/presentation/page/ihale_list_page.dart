@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:plug/feature/domain/entity/ihale.dart';
 import 'package:plug/feature/presentation/bloc/bloc.dart';
-import 'package:plug/feature/presentation/bloc/ihale_bilgi_bloc.dart';
 import 'package:plug/feature/presentation/helper/ui_helper.dart';
 import 'package:plug/feature/presentation/page/ihale_bilgi_page.dart';
 import 'package:plug/feature/presentation/page/login_page.dart';
