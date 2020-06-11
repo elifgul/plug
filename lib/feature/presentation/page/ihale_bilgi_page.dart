@@ -3,10 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:plug/feature/domain/entity/ihale.dart';
 import 'package:plug/feature/presentation/bloc/bloc.dart';
-import 'package:plug/feature/presentation/bloc/ihale_event.dart';
-import 'package:plug/feature/presentation/bloc/ihale_state.dart';
 import 'package:plug/feature/presentation/helper/ui_helper.dart';
-import 'package:plug/feature/presentation/widget/loader.dart';
+import 'package:plug/feature/presentation/widget/loading_indicator.dart';
 
 class IhaleBilgiPageBloc extends StatefulWidget {
   final Ihale ihale;
@@ -33,7 +31,7 @@ class _IhaleBilgiPageBlocState extends State<IhaleBilgiPageBloc> {
     return BlocBuilder<IhaleBilgiBloc, IhaleState>(
       builder: (context, state) {
        if (state is Loading) {
-         return buildLoading();
+         return LoadingIndicator();
         } else if (state is Loaded) {
           return getIhaleBilgiWidget(context, state);
         } else {
@@ -43,16 +41,6 @@ class _IhaleBilgiPageBlocState extends State<IhaleBilgiPageBloc> {
         }
       },
     );
-  }
-
-  Widget buildLoading() {
-    return Scaffold(
-        body:Center(
-      child: Container(
-        color: UIHelper.WHITE_COLOR,
-        child: ColorLoader(),
-      ),
-    ));
   }
 
   Widget getIhaleBilgiWidget(BuildContext context, Loaded state) {

@@ -5,7 +5,6 @@ import 'package:plug/feature/domain/entity/ihale.dart';
 import 'package:plug/feature/presentation/bloc/bloc.dart';
 import 'package:plug/feature/presentation/helper/ui_helper.dart';
 import 'package:plug/feature/presentation/page/ihale_bilgi_page.dart';
-import 'package:plug/feature/presentation/page/login_page.dart';
 import 'package:plug/feature/presentation/style/text_style.dart';
 import 'package:plug/feature/presentation/widget/widgets.dart';
 
@@ -38,8 +37,7 @@ class _IhaleListPageState extends State<IhaleListPage> {
           IconButton(
             icon: Icon(Icons.exit_to_app),
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => LoginPage()));
+              BlocProvider.of<AuthenticationBloc>(context).add(LoggedOut());
             },
           )
         ],
