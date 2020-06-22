@@ -117,7 +117,7 @@ class IhaleLocalDataSourceImpl implements IhaleLocalDataSource {
       ),
     ];
     print(allIhaleList.length);
-    await new Future.delayed(new Duration(seconds: 2));
+    await new Future.delayed(new Duration(seconds: 1));
     return allIhaleList;
   }
 

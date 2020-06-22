@@ -14,13 +14,17 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
+
+    final _loginFormKey = GlobalKey<FormState>();
     _onLoginButtonPressed() {
-      BlocProvider.of<LoginBloc>(context).add(
-        LoginButtonPressed(
-          username: _usernameController.text,
-          password: _passwordController.text,
-        ),
-      );
+      if (_loginFormKey.currentState.validate()) {
+        BlocProvider.of<LoginBloc>(context).add(
+          LoginButtonPressed(
+            username: _usernameController.text,
+            password: _passwordController.text,
+          ),
+        );
+      }
     }
 
     final logo = Padding(
@@ -46,19 +50,27 @@ class _LoginFormState extends State<LoginForm> {
 
     final inputEmail = Padding(
       padding: EdgeInsets.only(bottom: 10),
-      child: TextField(
+      child: TextFormField(
+        validator: (value) {
+          if (value.isEmpty) {
+            return 'Lütfen kullanıcı adını giriniz.';
+          }
+          return null;
+        },
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
             hintText: 'Kullanıcı Adı',
             contentPadding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
             border:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(50))),
+
       ),
+
     );
 
     final inputPassword = Padding(
       padding: EdgeInsets.only(bottom: 20),
-      child: TextField(
+      child: TextFormField(
         keyboardType: TextInputType.emailAddress,
         obscureText: true,
         decoration: InputDecoration(
@@ -107,6 +119,7 @@ class _LoginFormState extends State<LoginForm> {
       child: BlocBuilder<LoginBloc, LoginState>(
         builder: (context, state) {
           return Form(
+            key: _loginFormKey,
             child: Center(
               child: ListView(
                 shrinkWrap: true,
