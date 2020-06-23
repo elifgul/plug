@@ -2,5 +2,5 @@ import 'core/config/environment.dart';
 import 'main.dart';
 
 Future<void> main() async {
-  await mainCommon(Environment.dev);
+  mainCommon(Environment.dev);
 }
