@@ -51,6 +51,7 @@ class _LoginFormState extends State<LoginForm> {
     final inputEmail = Padding(
       padding: EdgeInsets.only(bottom: 10),
       child: TextFormField(
+        controller: _usernameController,
         validator: (value) {
           if (value.isEmpty) {
             return 'Lütfen kullanıcı adını giriniz.';
@@ -71,6 +72,7 @@ class _LoginFormState extends State<LoginForm> {
     final inputPassword = Padding(
       padding: EdgeInsets.only(bottom: 20),
       child: TextFormField(
+        controller: _passwordController,
         keyboardType: TextInputType.emailAddress,
         obscureText: true,
         decoration: InputDecoration(
